@@ -35,7 +35,7 @@ function addProduct(){
     //inserto el producto en la DB.
     insertProduct($product,$description,$price);
 
-    header("Location: http://localhost/web2/TPE1/TPE/");
+    header("Location:". BASE_URL);
 
 
 }
