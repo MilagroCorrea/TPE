@@ -3,8 +3,8 @@
 Abro conexión a la base de datos.
 */
 
-function conect(){
-    $db = new PDO('mysql:host=localhost;'.'dbname=db_products;charset=utf8', 'root', '');
+function connect(){
+    $db = new PDO('mysql:host=localhost;'.'dbname=db_productos;charset=utf8', 'root', '');
     return $db;
 }
 
@@ -14,7 +14,7 @@ Devuelve todas las tareas de la base de datos.
 
 function  getProducts(){
     //1.Abro la conexión.
-    $db=conect();
+    $db=connect();
     //2.Enviar la consulta (2 sub pasos: prepare and execute
     $query= $db->prepare('SELECT * FROM product');
     $query->execute();
@@ -24,3 +24,14 @@ function  getProducts(){
 
     return $products;
 }
+
+//Inserta el producto en la base de datos.
+
+function insertProduct($product, $description, $price){
+
+    $db=connect();
+
+    $query= $db->prepare( 'INSERT INTO `product` ( `product`, `descripcion`, `price`) VALUES (?,?,?)');
+    $query->execute([$product, $description, $price]);
+
+  }

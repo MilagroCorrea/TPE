@@ -17,10 +17,13 @@ $params=explode("/",$action);
 //
 // determina que camino seguir según la acción
 switch ($params[0]) {
-case 'listar':
-    showProducts();
-break;
-default:
-echo('404 Page not found');
-break;
-}
+    case 'listar':
+        showProducts();
+        break;
+    case 'insertar':
+        addProduct();
+        break;
+    default:
+        echo('404 Page not found');
+        break;
+    }
