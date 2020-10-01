@@ -23,6 +23,10 @@ switch ($params[0]) {
     case 'insertar':
         addProduct();
         break;
+    case 'borrar':
+        $id = $params[1];
+        deleteProduct($id);
+        break;
     default:
         echo('404 Page not found');
         break;

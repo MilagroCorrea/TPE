@@ -12,7 +12,7 @@ function connect(){
 Devuelve todas las tareas de la base de datos.
 */
 
-function  getProducts(){
+function  getProducts(){ 
     //1.Abro la conexión.
     $db=connect();
     //2.Enviar la consulta (2 sub pasos: prepare and execute
@@ -34,4 +34,18 @@ function insertProduct($product, $description, $price){
     $query= $db->prepare( 'INSERT INTO `product` ( `product`, `descripcion`, `price`) VALUES (?,?,?)');
     $query->execute([$product, $description, $price]);
 
+    //3.Obtengo y devuelvo el id del ultimo produto agregado
+
+    return $db->lastInsertId();
+
   }
+
+function removeProduct($id){
+
+     //1.Abro la conexión.
+     $db=connect();
+     //2.Enviar la consulta (2 sub pasos: prepare and execute
+     $query= $db->prepare('DELETE FROM `product` WHERE `product`.`id` = ?');
+     $query->execute([$id]);
+     
+ }

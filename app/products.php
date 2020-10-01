@@ -11,7 +11,11 @@ function showProducts(){
 
         echo "<ul class='list-group mt-5'>";
         foreach($products as $product){
-            echo"<li class='list-group-item'>$product->product | $product->descripcion | $product->price | $product->stock</li>";
+            echo"<li class='list-group-item'>
+                    $product->product | $product->descripcion | $product->price | $product->stock
+                    <a class='btn btn-danger btn-sm' href='borrar/$product->id' > BORRAR </a>
+                </li>";
+
         }
         echo "</ul>";
         
@@ -33,9 +37,15 @@ function addProduct(){
     }
 
     //inserto el producto en la DB.
-    insertProduct($product,$description,$price);
+    $id=insertProduct($product,$description,$price);
 
     header("Location:". BASE_URL);
 
+}
+
+function deleteProduct($id){
+
+    removeProduct($id);
+    header("Location:". BASE_URL);
 
 }
